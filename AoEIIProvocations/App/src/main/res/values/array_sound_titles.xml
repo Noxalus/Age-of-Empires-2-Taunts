@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_sound_titles">
+        <item>Oui.</item>
+        <item>Non.</item>
+        <item>De la nourriture, merci.</item>
+        <item>Du bois, merci.</item>
+        <item>De l\'or, merci.</item>
+        <item>Des pierres, merci.</item>
+        <item>Ahh !!!</item>
+        <item>Roi des perdants, nous te saluons !</item>
+        <item>Oooh !!!</item>
+        <item>Hey, retourne à l\'âge de pierre !</item>
+        <item>[Moquerie]</item>
+        <item>Sauve qui peut !</item>
+        <item>C\'est ça, encore un coup de ton ISP !</item>
+        <item>Aller, on joue !</item>
+        <item>Hey, pointe pas cette chose sur moi !</item>
+        <item>Ennemi en vue.</item>
+        <item>C\'est si bon d\'être roi.</item>
+        <item>Un moine, je veux un moine !</item>
+        <item>Alors, toujours pas de siège ?</item>
+        <item>Même ma grand-mère peut faire mieux !</item>
+        <item>À moi, la jolie ville !</item>
+        <item>Bas les pattes !</item>
+        <item>À l\'assaut !</item>
+        <item>Bon sang !</item>
+        <item>Vas-y, attaque-moi !</item>
+        <item>La merveille, la merveille ! Nooooon !!!</item>
+        <item>2 heures de jeu pour crever comme ça !</item>
+        <item>Ah bon, euh, regarde plutôt l\'autre...</item>
+        <item>Roggan ?</item>
+        <item>Wololo !</item>
+        <item>Attaquez l\'ennemi maintenant.</item>
+        <item>Ne créez plus de villageois.</item>
+        <item>Créez d\'autres villageois.</item>
+        <item>Créez une flotte.</item>
+        <item>Cessez de créer la flotte.</item>
+        <item>Attendez mon signal pour attaquer.</item>
+        <item>Créez une merveille.</item>
+        <item>Donnez-moi vos excédents.</item>
+        <item>[Allié]</item>
+        <item>[Ennemi]</item>
+        <item>[Neutre]</item>
+        <item>Dans quel âge vous trouvez-vous ?</item>
+    </string-array>
+</resources>

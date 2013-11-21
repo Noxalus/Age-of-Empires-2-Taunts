@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AoE II Provocations</string>
+    <string name="action_settings">Options</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Annuler</string>
+    <string name="set_as_dialog_title">Ajouter en tant que</string>
+    <string name="title_activity_settings">Options</string>
+
+    <string name="share">Lorsqu\'un son est joué:</string>
+    <string name="share_info">* Les champs grisés le sont car vous n\'avez pas installé la version officielle de l\'application en question.</string>
+    <string name="radio_none">Ne pas partager</string>
+    <string name="radio_twitter">Partager sur Twitter</string>
+    <string name="radio_facebook">Partager sur Facebook</string>
+    <string name="radio_google_plus">Partager sur Google+</string>
+    <string name="radio_gmail">Partager sur Gmail</string>
+    <string name="radio_mail">Partager par mail</string>
+    <string name="radio_sms">Partager par SMS</string>
+    <string name="btn_save">Enregistrer</string>
+
+</resources>

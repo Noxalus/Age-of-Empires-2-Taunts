@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/shareInfo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/share"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="18dp" />
+
+    <RadioGroup
+        android:id="@+id/radioShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <RadioButton
+            android:id="@+id/radioTwitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_twitter" />
+
+        <RadioButton
+            android:id="@+id/radioFacebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_facebook" />
+
+        <RadioButton
+            android:id="@+id/radioGooglePlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_google_plus" />
+
+        <RadioButton
+            android:id="@+id/radioMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_mail" />
+
+        <RadioButton
+            android:id="@+id/radioGmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_gmail" />
+
+        <RadioButton
+            android:id="@+id/radioSMS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_sms" />
+
+        <RadioButton
+            android:id="@+id/radioNone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_none"
+            android:checked="true" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_save"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:id="@+id/shareInfo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/share_info"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="italic" />
+
+</LinearLayout>
