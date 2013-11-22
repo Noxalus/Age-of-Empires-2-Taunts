@@ -21,7 +21,13 @@ public class MainActivity extends ActionBarActivity {
 
     private int[] _soundsResources;
     private String[] _soundsTitles;
-    public final static String[] ShareTypes =  { "twitter", "facebook", "google+", "mail", "gmail", "sms" };
+    public final static String[] ShareTypes =  {
+            "com.twitter.android",
+            "com.facebook.katana",
+            "com.google.android.apps.plus",
+            "com.android.email",
+            "com.google.android.gm",
+            "com.android.mms" };
     private int _currentPosition;
 
     @Override
@@ -162,40 +168,28 @@ public class MainActivity extends ActionBarActivity {
     private void shareIntent(String type, String subject, String content) {
         boolean found = false;
 
-        if (type.equals("sms"))
-        {
-            Uri uri = Uri.parse("smsto:");
-            Intent share = new Intent(Intent.ACTION_MAIN, uri);
-            share.putExtra("sms_body", content);
-            share.setType("vnd.android-dir/mms-sms");
+        Intent share = new Intent(android.content.Intent.ACTION_SEND);
+        share.setType("text/plain");
 
-            startActivity(share);
-        }
-        else
-        {
-            Intent share = new Intent(android.content.Intent.ACTION_SEND);
-            share.setType("text/plain");
+        // gets the list of intents that can be loaded.
+        List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(share, 0);
+        if (!resInfo.isEmpty()){
+            for (ResolveInfo info : resInfo) {
+                if (info.activityInfo.packageName.toLowerCase().contains(type) ||
+                        info.activityInfo.name.toLowerCase().contains(type) ) {
+                    share.putExtra(Intent.EXTRA_SUBJECT, subject);
+                    share.putExtra(Intent.EXTRA_TEXT, content);
+                    share.setPackage(info.activityInfo.packageName);
 
-            // gets the list of intents that can be loaded.
-            List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(share, 0);
-            if (!resInfo.isEmpty()){
-                for (ResolveInfo info : resInfo) {
-                    if (info.activityInfo.packageName.toLowerCase().contains(type) ||
-                            info.activityInfo.name.toLowerCase().contains(type) ) {
-                        share.putExtra(Intent.EXTRA_SUBJECT, subject);
-                        share.putExtra(Intent.EXTRA_TEXT, content);
-                        share.setPackage(info.activityInfo.packageName);
+                    found = true;
 
-                        found = true;
-
-                        break;
-                    }
+                    break;
                 }
-                if (!found)
-                    return;
-
-                startActivity(Intent.createChooser(share, "Partager avec"));
             }
+            if (!found)
+                return;
+
+            startActivity(Intent.createChooser(share, "Partager avec"));
         }
     }
 

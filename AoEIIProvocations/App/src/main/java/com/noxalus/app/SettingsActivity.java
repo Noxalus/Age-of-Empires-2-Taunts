@@ -46,7 +46,7 @@ public class SettingsActivity extends ActionBarActivity {
         // Disable radio button when no application is found
         for (int i = 0; i < RadioNoneIndex; i++)
         {
-            if (!applicationExists(MainActivity.ShareTypes[i]))
+            if (MainActivity.ShareTypes[i] != "sms" && !applicationExists(MainActivity.ShareTypes[i]))
             {
                 RadioButton radioButton = (RadioButton)radioShare.getChildAt(i);
                 radioButton.setEnabled(false);
