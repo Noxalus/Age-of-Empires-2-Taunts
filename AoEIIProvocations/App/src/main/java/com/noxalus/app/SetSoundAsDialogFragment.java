@@ -86,9 +86,9 @@ public class SetSoundAsDialogFragment extends DialogFragment {
                     // Ringtone
                     if (_selectedItems.contains(0)) {
 
-                        SetSoundAs(RingtoneManager.TYPE_RINGTONE);
+                        setSoundAs(RingtoneManager.TYPE_RINGTONE);
 
-                        Toast toast = Toast.makeText(_context, "\"" + _name + "\"\n a été ajouté comme sonnerie !", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(_context, "\"" + _name + "\"\n" + getString(R.string.sound_as_ringtone), Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         ((TextView)((LinearLayout)toast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_HORIZONTAL);
                         toast.show();
@@ -96,9 +96,9 @@ public class SetSoundAsDialogFragment extends DialogFragment {
                     }
                     // Notification
                     if (_selectedItems.contains(1)) {
-                        SetSoundAs(RingtoneManager.TYPE_NOTIFICATION);
+                        setSoundAs(RingtoneManager.TYPE_NOTIFICATION);
 
-                        Toast toast = Toast.makeText(_context, "\"" + _name + "\"\n a été ajouté comme notification !", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(_context, "\"" + _name + "\"\n" + getString(R.string.sound_as_notification), Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         ((TextView)((LinearLayout)toast.getView()).getChildAt(0)).setGravity(Gravity.CENTER_HORIZONTAL);
                         toast.show();
@@ -115,7 +115,8 @@ public class SetSoundAsDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-    public void SetSoundAs(int type) {
+    // Copy the sound file into internal memory
+    public void setSoundAs(int type) {
         String basePath = "/sdcard/Media/Audio/Ringtones/";
 
         if (type == RingtoneManager.TYPE_NOTIFICATION)
@@ -161,10 +162,10 @@ public class SetSoundAsDialogFragment extends DialogFragment {
             Log.e(TAG, io.getMessage());
         }
 
-        SetRingtone(file, type);
+        setRingtone(file, type);
     }
 
-    public void SetRingtone(File file, int type){
+    public void setRingtone(File file, int type){
         boolean isNotification = (type == RingtoneManager.TYPE_NOTIFICATION);
 
         ContentValues values = new ContentValues();

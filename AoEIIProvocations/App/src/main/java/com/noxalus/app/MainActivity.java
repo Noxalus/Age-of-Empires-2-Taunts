@@ -21,6 +21,7 @@ public class MainActivity extends ActionBarActivity {
 
     private int[] _soundsResources;
     private String[] _soundsTitles;
+    // Share applications
     public final static String[] ShareTypes =  {
             "com.twitter.android",
             "com.facebook.katana",
@@ -28,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
             "com.android.email",
             "com.google.android.gm",
             "com.android.mms" };
+    // Current sound
     private int _currentPosition;
 
     @Override
@@ -36,6 +38,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         _currentPosition = 0;
+        // We store the resoure id of each sound
         _soundsResources = new int[]
         {
                 R.raw.yes,
@@ -82,20 +85,20 @@ public class MainActivity extends ActionBarActivity {
                 R.raw.what_age_are_you_in,
         };
 
-        // We create the sound list
+        // We create the sound list (text)
         ListView listView = (ListView) findViewById(R.id.sound_list);
-
         _soundsTitles = getResources().getStringArray(R.array.array_sound_titles);
 
         MyAdapter adapter = new MyAdapter(this, R.layout.sound_list_layout, _soundsTitles);
         listView.setAdapter(adapter);
 
+        // Long click listener => show dialog to set the sound as ringtone/notification
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
                 MyAdapter adapter = (MyAdapter) adapterView.getAdapter();
                 SetSoundAsDialogFragment dialog = new SetSoundAsDialogFragment(
-                        adapter.context, _soundsResources[pos], _soundsTitles[pos]);
+                    adapter.context, _soundsResources[pos], _soundsTitles[pos]);
 
                 FragmentManager fm = getFragmentManager();
 
@@ -105,6 +108,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        // Click listener => play the selected sound
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
@@ -112,34 +116,28 @@ public class MainActivity extends ActionBarActivity {
 
                 _currentPosition = pos;
 
+                // We load the selected sound and we play it
                 MediaPlayer mp = MediaPlayer.create(adapter.context, _soundsResources[pos]);
                 mp.start();
+
+                // When the sound is finished
                 mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     public void onCompletion(MediaPlayer mp) {
-                        mp.release();
+                // We don't forget to release it !
+                    mp.release();
 
-                        // Share with social network
-                        SharedPreferences pref = getSharedPreferences("shared_preferences", MODE_PRIVATE);
-                        int shareTypeId = pref.getInt("SHARE_TYPE", -1);
-                        if (shareTypeId > -1)
-                        {
-                            String name = _soundsTitles[_currentPosition];
-                            String subject = "[AoE2][Provoc] Devine ce que j'ai écouté ?";
-                            String content = "J'ai écouté le son \"" + name + "\" à l'aide de l'application \"Age of Empires 2 Provocations\" !";
-                            shareIntent(ShareTypes[shareTypeId], subject, content);
-                        }
-
-                        /*
+                    // Share with social networks
+                    SharedPreferences pref = getSharedPreferences("shared_preferences", MODE_PRIVATE);
+                    int shareTypeId = pref.getInt("SHARE_TYPE", -1);
+                    if (shareTypeId > -1)
+                    {
                         String name = _soundsTitles[_currentPosition];
-                        final Intent intent = new Intent(Intent.ACTION_SEND);
-                        intent.setType("text/plain");
-                        intent.putExtra(Intent.EXTRA_TEXT, "J'ai écouté le son \"" + name + "\" à l'aide de l'application \"Age of Empires 2 Provocations\" !");
-                        startActivity(Intent.createChooser(MessIntent, "Partager avec"));
-                        */
-                    };
-                });
-
-
+                        String subject = "[AoE2][Provoc] Devine ce que j'ai écouté ?";
+                        String content = "J'ai écouté le son \"" + name + "\" à l'aide de l'application \"Age of Empires 2 Provocations\" !";
+                        shareIntent(ShareTypes[shareTypeId], subject, content);
+                    }
+                };
+            });
             }
         });
     }
@@ -177,8 +175,8 @@ public class MainActivity extends ActionBarActivity {
             for (ResolveInfo info : resInfo) {
                 if (info.activityInfo.packageName.toLowerCase().contains(type) ||
                         info.activityInfo.name.toLowerCase().contains(type) ) {
-                    share.putExtra(Intent.EXTRA_SUBJECT, subject);
-                    share.putExtra(Intent.EXTRA_TEXT, content);
+                    share.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+                    share.putExtra(android.content.Intent.EXTRA_TEXT, content);
                     share.setPackage(info.activityInfo.packageName);
 
                     found = true;

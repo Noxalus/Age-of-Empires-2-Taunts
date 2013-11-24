@@ -6,6 +6,8 @@
     <string name="ok">Ok</string>
     <string name="cancel">Annuler</string>
     <string name="set_as_dialog_title">Ajouter en tant que</string>
+    <string name="sound_as_ringtone">a été ajouté comme sonnerie !</string>
+    <string name="sound_as_notification">a été ajouté comme notification !</string>
     <string name="title_activity_settings">Options</string>
 
     <string name="share">Lorsqu\'un son est joué:</string>

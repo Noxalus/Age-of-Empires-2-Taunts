@@ -2,6 +2,7 @@ package com.noxalus.app;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -46,7 +47,7 @@ public class SettingsActivity extends ActionBarActivity {
         // Disable radio button when no application is found
         for (int i = 0; i < RadioNoneIndex; i++)
         {
-            if (MainActivity.ShareTypes[i] != "sms" && !applicationExists(MainActivity.ShareTypes[i]))
+            if (!applicationExists(MainActivity.ShareTypes[i]))
             {
                 RadioButton radioButton = (RadioButton)radioShare.getChildAt(i);
                 radioButton.setEnabled(false);
@@ -86,21 +87,13 @@ public class SettingsActivity extends ActionBarActivity {
 
     private boolean applicationExists(String type)
     {
-        Intent share = new Intent(android.content.Intent.ACTION_SEND);
-        share.setType("text/plain");
+        try {
+            getPackageManager().getApplicationInfo(type, PackageManager.GET_META_DATA);
 
-        // gets the list of intents that can be loaded.
-        List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(share, 0);
-        if (!resInfo.isEmpty()){
-            for (ResolveInfo info : resInfo) {
-                if (info.activityInfo.packageName.toLowerCase().contains(type) ||
-                        info.activityInfo.name.toLowerCase().contains(type) ) {
-                    return true;
-                }
-            }
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
         }
-
-        return false;
     }
 
 }
