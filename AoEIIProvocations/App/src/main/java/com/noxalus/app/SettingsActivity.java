@@ -74,7 +74,7 @@ public class SettingsActivity extends ActionBarActivity {
                 editor.putInt("SHARE_TYPE", shareTypeId);
                 editor.commit();
 
-                Toast.makeText(SettingsActivity.this, "Préférence enregistré !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingsActivity.this, R.string.shared_preferences_saved, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
